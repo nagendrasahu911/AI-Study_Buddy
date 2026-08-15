@@ -80,7 +80,8 @@ function AuthPage() {
     });
     if (result.error) {
       setBusy(false);
-      return toast.error("Google sign-in failed. Try email instead.");
+      toast.error("Google sign-in failed. Try email instead.");
+      return;
     }
     if (result.redirected) return;
     navigate({ to: "/dashboard", replace: true });
