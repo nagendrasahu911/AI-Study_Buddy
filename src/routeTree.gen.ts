@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedAssistantRouteImport } from './routes/_authenticated/assistant'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedFlashcardsRouteImport } from './routes/_authenticated/flashcards'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedQuizRouteImport } from './routes/_authenticated/quiz'
 import { Route as AuthenticatedTimetableRouteImport } from './routes/_authenticated/timetable'
 
@@ -47,6 +48,11 @@ const AuthenticatedFlashcardsRoute = AuthenticatedFlashcardsRouteImport.update({
   path: '/flashcards',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedQuizRoute = AuthenticatedQuizRouteImport.update({
   id: '/quiz',
   path: '/quiz',
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/assistant': typeof AuthenticatedAssistantRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/flashcards': typeof AuthenticatedFlashcardsRoute
+  '/profile': typeof AuthenticatedProfileRoute
   '/quiz': typeof AuthenticatedQuizRoute
   '/timetable': typeof AuthenticatedTimetableRoute
 }
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/assistant': typeof AuthenticatedAssistantRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/flashcards': typeof AuthenticatedFlashcardsRoute
+  '/profile': typeof AuthenticatedProfileRoute
   '/quiz': typeof AuthenticatedQuizRoute
   '/timetable': typeof AuthenticatedTimetableRoute
 }
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/_authenticated/assistant': typeof AuthenticatedAssistantRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/flashcards': typeof AuthenticatedFlashcardsRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/quiz': typeof AuthenticatedQuizRoute
   '/_authenticated/timetable': typeof AuthenticatedTimetableRoute
 }
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
     | '/assistant'
     | '/dashboard'
     | '/flashcards'
+    | '/profile'
     | '/quiz'
     | '/timetable'
   fileRoutesByTo: FileRoutesByTo
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
     | '/assistant'
     | '/dashboard'
     | '/flashcards'
+    | '/profile'
     | '/quiz'
     | '/timetable'
   id:
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
     | '/_authenticated/assistant'
     | '/_authenticated/dashboard'
     | '/_authenticated/flashcards'
+    | '/_authenticated/profile'
     | '/_authenticated/quiz'
     | '/_authenticated/timetable'
   fileRoutesById: FileRoutesById
@@ -168,6 +180,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFlashcardsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/quiz': {
       id: '/_authenticated/quiz'
       path: '/quiz'
@@ -189,6 +208,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAssistantRoute: typeof AuthenticatedAssistantRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedFlashcardsRoute: typeof AuthenticatedFlashcardsRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedQuizRoute: typeof AuthenticatedQuizRoute
   AuthenticatedTimetableRoute: typeof AuthenticatedTimetableRoute
 }
@@ -197,6 +217,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAssistantRoute: AuthenticatedAssistantRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedFlashcardsRoute: AuthenticatedFlashcardsRoute,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedQuizRoute: AuthenticatedQuizRoute,
   AuthenticatedTimetableRoute: AuthenticatedTimetableRoute,
 }
